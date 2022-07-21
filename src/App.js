@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import FirstComponent from "./components/FirstComponent";
+import SecondComponent from "./components/SecondComponent";
+
+import {Routes,Route,Link} from 'react-router-dom';
 
 function App() {
+  const [position, setPosition] = useState("first");
+
+  //handler untuk onClick
+  const linkOnClickHandler = (event, pos) => {
+    event.preventDefault();
+    setPosition(pos);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
+      {/* <h1>React Navigation - Intro</h1>
+      <span style={{ display: "flex", gap: "0.5em" }}>
+        <a href="/" onClick={(event) => linkOnClickHandler(event, "first")}>
+          Component Pertama
         </a>
-      </header>
+        <a href="/" onClick={(event) => linkOnClickHandler(event, "second")}>
+          Component Kedua
+        </a>
+      </span>
+      {position === "first" ? <FirstComponent /> : <SecondComponent />} 
+      */}
+
+      <h1>React Navigation</h1>
+      <Routes>
+        <Route path="/" element={<>Halo Dunia</>}></Route>
+        <Route path="about" element={<>Halo About</>}></Route>
+      </Routes>
     </div>
   );
 }
